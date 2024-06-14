@@ -1,0 +1,26 @@
+{
+   
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": ".NET Framework Launch (Full)",
+                "type": "clr",
+                "request": "launch",
+                "program": "${workspaceFolder}/bin/Debug/net48/Program.cs",
+                "args": [],
+                "cwd": "${workspaceFolder}",
+                "stopAtEntry": false,
+                "console": "externalTerminal"
+            },
+            {
+                "name": ".NET Framework Launch (Client)",
+                "type": "clr",
+                "request": "launch",
+                "program": "${workspaceFolder}/bin/Debug/net40/Program.cs",
+                "args": [],
+                "cwd": "${workspaceFolder}",
+                "stopAtEntry": false,
+                "console": "externalTerminal"
+            }
+        ]
+    }
