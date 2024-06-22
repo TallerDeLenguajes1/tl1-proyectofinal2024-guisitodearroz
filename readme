@@ -1,0 +1,6 @@
+# Una Aventura En El Norte Argentino
+! Este es mi proyecto donde recorreremos el norte Argentino junto a sus leyendas, folclore y por supuesto nuestros heroes 100% criollos.
+## Descripcion
+El Modelo del cual me estoy inspirando para mi idea sera **dragones y mazmorras** y tal vez **pokemon**, el sistema para creacion de personajes. Adjunto documentacion donde saque las herramientas:[Documentación de Microsoft sobre Constructores de Instancia en C#](https://learn.microsoft.com/es-es/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors).
+Utilizo 1 api [Ramdom data api](https://random-data-api.com) con la cual genero **Nombre** **Apellido** **Provincia** esto se utilizara para los heroes, para los **villanos** seguramente usare **WikiPedia** o alguna base de datos externa ya que no encontre una especifica que tenga **Criaturas del folclore argentino**.
+Para el llamado de la api use la siguiente documentacion [JsonDocument clase](https://learn.microsoft.com/es-es/dotnet/api/system.text.json.jsondocument?view=net-8.0), [JsonElement clase](https://learn.microsoft.com/es-es/dotnet/api/system.text.json.jsonelement?view=net-8.0), [System.text.Json](https://learn.microsoft.com/en-us/dotnet/api/system.text.json?view=net-8.0).
