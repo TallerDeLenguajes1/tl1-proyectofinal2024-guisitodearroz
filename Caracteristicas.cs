@@ -1,12 +1,12 @@
 namespace personajes;
 public class Caracteristicas
 {
-    int velocidad; //1 al 10
-    int destreza;// 1 al 5
-    int fuerza;//1 a 10
-    int nivel; //1a10
-    int armadura;//1 a 10
-    int salud;//100 fijo luego se resta con el daño
+    public int Velocidad{get;set;}//1 al 10
+    public int Destreza{get; set;}// 1 al 5
+    public int Fuerza{get;set;}//1 al 10
+    public int Nivel{get; set;}//1 al 10
+    public int Armadura{get; set;}//1 al 10
+    public int Salud{get; set;}//100 fijo luego se resta con el daño
     public Caracteristicas(int velocidad, int destreza, int fuerza, int nivel, int armadura, int salud)
     {
         this.Velocidad= velocidad;
@@ -16,24 +16,3 @@ public class Caracteristicas
         this.Armadura=armadura;
         this.Salud=salud;
     }
-
-    public int Velocidad
-    {
-        get=> velocidad; 
-        set
-        { 
-            if (velocidad < 1 || velocidad > 10)
-            {
-                throw new ArgumentOutOfRangeException("Velocidad debe estar entre 1 y 10.");
-                }else{
-                    velocidad= value;
-                    }        
-        }
-    }
-    public int Destreza{get=> destreza; set => destreza= value;}
-    public int Fuerza{get=> fuerza; set => fuerza= value;}
-    public int Nivel{get=> nivel; set => nivel= value;}
-    public int Armadura{get=> armadura; set => armadura= value;}
-    public int Salud{get=> salud; set => salud= value;}
-
-}

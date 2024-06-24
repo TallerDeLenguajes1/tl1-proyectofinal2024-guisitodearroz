@@ -2,15 +2,13 @@ namespace personajes;
 public class Personaje
 {
     //utilizo los datos y las caracteristicas como objetos con la finalidad de tener todo mas ordenado
-   Datos dato;
-   Caracteristicas caracteristica;
+    public Caracteristicas Caracteristica { get; set; }
+    public Datos Dato { get; set; }
      //creacion de los constructores 
-    public Personaje(Datos dato)
+    public Personaje(Datos dato, Caracteristicas Caracteristica)
     {
-        this.Dato = dato;
-        this.Caracteristica= caracteristica;
+        Dato = dato;
+        Caracteristica= caracteristica;
     }
 
-    public Caracteristicas Caracteristica { get => caracteristica; set => caracteristica = value; }
-    public Datos Dato { get => dato; set => dato = value; }
 }
