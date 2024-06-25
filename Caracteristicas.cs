@@ -16,7 +16,7 @@ public class Caracteristicas
         this.Armadura=armadura;
         this.Salud=salud;
     }
-     public override string ToString()
+    public override string ToString()
     {
         return $"Velocidad: {Velocidad}, Destreza: {Destreza}, Fuerza: {Fuerza}, " +
                $"Nivel: {Nivel}, Armadura: {Armadura}, Salud: {Salud}";

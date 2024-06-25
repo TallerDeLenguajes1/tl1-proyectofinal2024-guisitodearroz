@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Security.Cryptography.X509Certificates;
 
 public class ApiService
 {
@@ -17,7 +18,6 @@ public class ApiService
         {
             string jsonResponse = await response.Content.ReadAsStringAsync();
             JsonDocument doc = JsonDocument.Parse(jsonResponse);
-
             JsonElement user = doc.RootElement;
             string nombre = $"{user.GetProperty("first_name").GetString()} {user.GetProperty("last_name").GetString()}";
             string provincia = await ObtenerProvinciaAleatoria();
@@ -53,4 +53,16 @@ public class ApiService
             throw new Exception("Error al obtener las provincias de la API.");
         }
     }
+}
+
+public class DatosDePersonaje
+{
+
+    string Nombre; 
+    string Provincia; 
+    DateTime FechaNacimiento;
+
+    public string Nombre1 { get => Nombre; set => Nombre = value; }
+    public string Provincia1 { get => Provincia; set => Provincia = value; }
+    public DateTime FechaNacimiento1 { get => FechaNacimiento; set => FechaNacimiento = value; }
 }

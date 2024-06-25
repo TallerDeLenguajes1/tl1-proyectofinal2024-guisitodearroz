@@ -3,7 +3,7 @@ public static class Apodo
 {
     private static readonly List<string> apodos = new List<string>
     {
-        "El picante", "El pollo", "La bestia", "Facha", "trabajont"
+        "El picante", "El pollo", "La bestia", "Facha", "trabajon't"
     };
     private static readonly Random random= new Random();
     public static string obtenerApodo(){
