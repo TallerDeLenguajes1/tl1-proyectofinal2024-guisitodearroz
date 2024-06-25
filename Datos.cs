@@ -14,4 +14,8 @@ public class Datos
         this.FechaNacimiento= fechaNacimiento;
         this.Edad= edad;
     }
+     public override string ToString()
+    {
+        return $"Nombre: {Nombre}, Apodo: {Apodo}, Fecha de Nacimiento: {FechaNacimiento.ToShortDateString()}, Edad: {Edad}, Provincia: {Tipo}";
+    }
  }
