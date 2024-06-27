@@ -2,6 +2,14 @@ using System;
 namespace personajes;
 public class fabricaDePersonajes
 {
+    //traer datos de la api y ponerlos en un texto plano
+    private List<DatosDePersonaje> datos;
+
+    public fabricaDePersonajes(List<DatosDePersonaje>datos)
+    {
+        this.datos = datos;
+    }
+
     public static async Task<Personaje> crearPersonaje()
     {
         //traigo los datos de la api

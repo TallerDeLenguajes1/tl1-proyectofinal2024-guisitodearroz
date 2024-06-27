@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using clasesApi;
 using personajes;
+using System.Security.Cryptography.X509Certificates;
 
 public class ApiService
 {
