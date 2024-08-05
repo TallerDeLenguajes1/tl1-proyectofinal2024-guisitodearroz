@@ -13,8 +13,9 @@ public class Personaje
         public override string ToString()
     {
         return $"Nombre: {Dato.Nombre}, Apodo: {Dato.Apodo}, " +
-               $"Fecha de Nacimiento: {Dato.FechaNacimiento.ToShortDateString()}, " +
-               $"Edad: {Dato.Edad}, Provincia: {Dato.Tipo}, " +
+               $"Fecha de Nacimiento: {Dato.FechaNacimiento}, " +
+               $"Edad: {Dato.Edad}, Tipo: {Dato.Tipo}, " +
+               $"Provincia: {Dato.LugarNacimiento}, " +
                $"Velocidad: {Caracteristica.Velocidad}, Destreza: {Caracteristica.Destreza}, " +
                $"Fuerza: {Caracteristica.Fuerza}, Nivel: {Caracteristica.Nivel}, " +
                $"Armadura: {Caracteristica.Armadura}, Salud: {Caracteristica.Salud}";
