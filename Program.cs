@@ -1,6 +1,8 @@
 ﻿using personajes;
 try
 {
+  Personaje enemigo= await fabricaDePersonajes.crearEnemigo();
+  Console.WriteLine(enemigo);
   Persistencia persistencia= new Persistencia();
   List<Personaje> personajes= persistencia.LeerPersonajes();
   if (personajes.Count > 0)

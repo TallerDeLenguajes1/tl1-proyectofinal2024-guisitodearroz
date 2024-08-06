@@ -6,8 +6,14 @@ public class ApodoJson{
 public class ProvinciasJson{
     public List<string> provincias{ get; set;}
 }
-
-
+public class TipoEnemigos
+{
+    public List<string> Tipo{ get; set;} 
+}
+public class nombrePersonaje
+{
+    public List<string> Nombres{ get; set;}
+}
 
 
 
