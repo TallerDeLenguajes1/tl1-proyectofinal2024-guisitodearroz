@@ -8,6 +8,7 @@ public class Datos
     public string LugarNacimiento{get; set;}
     public DateTime FechaNacimiento{get;set; }
     public int Edad{get;set;}
+    public Datos(){}
     public Datos(string tipo, string nombre, string apodo, DateTime fechaNacimiento, int edad, string lugarNacimiento)
     {
         this.Tipo = tipo;

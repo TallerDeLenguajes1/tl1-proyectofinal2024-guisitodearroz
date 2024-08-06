@@ -13,62 +13,34 @@ public class ApiServicio
     private static readonly HttpClient client= new HttpClient();
     
     public static async Task<List<string>> GetFechaApi(){
-        try
+        var url= "https://api.generadordni.es/v2/misc/birthdate";
+        int intentos=5;
+        int segundoEspera= 1000;
+        for (int i = 0; i < intentos; i++)
         {
-            var url= "https://api.generadordni.es/v2/misc/birthdate";
-            HttpResponseMessage response= await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            string responseBody= await response.Content.ReadAsStringAsync();
-            //deserealizo
-            List<string> fechNac= JsonSerializer.Deserialize<List<string>>(responseBody); //la api trae la info como cadena de caracteres
-            return fechNac;
+            try
+            {
+                HttpResponseMessage response= await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                string responseBody= await response.Content.ReadAsStringAsync();
+                //deserealizo
+                List<string> fechNac= JsonSerializer.Deserialize<List<string>>(responseBody); //la api trae la info como cadena de caracteres
+                return fechNac;
 
+            }catch(HttpRequestException ex) when ((int)ex.StatusCode==429)
+            {
+                    Console.WriteLine($"se intento en {segundoEspera/1000} segundos");
+                    await Task.Delay(segundoEspera);
+                    segundoEspera*= 5;
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine($"Error:{ex.Message}");
+                throw;
+            }
+            
         }
-        catch (System.Exception ex)
-        {
-            Console.WriteLine($"Error:{ex.Message}");
-            throw;
-        }
+            throw new HttpRequestException("Excedidos los intentos máximos.");
+            return new List<string>();
     } 
 }
-
-//         try
-//         {
-//             private static readonly string urlApi = "https://random-data-api.com/api/v2/users?size=1";
-//             HttpResponseMessage response = await client.GetAsync(urlApi);
-//             response.EnsureSuccessStatusCode();
-//             string responseBody = await response.Content.ReadAsStringAsync();
-
-//             // Deserializa el JSON en un objeto de tipo PersonaDatos
-//             PersonaDatos personaDatos = JsonSerializer.Deserialize<PersonaDatos>(responseBody);
-
-//             // Asigna un apodo usando el json
-//             string rutaApodo= "Apodo.json";
-//             List<string>apodos= ArchivoReader.LeerDesdeArchivoJson<string>(rutaApodo,"apodos");
-//             //genero apodos al azar
-//             Random random = new Random();
-//             int indiceAleatorioApodo= random.Next(apodos.Count);
-//             personaDatos.apodo= apodos[indiceAleatorioApodo].apodos;
-//             // Leer las provincias desde el archivo
-//             string rutaArchivoProvincias = "provincias.json"; 
-//             List<Provincia> provincias = ArchivoReader.LeerDesdeArchivoJson<Provincia>(rutaArchivoProvincias,"provincias");
-//             // Asignar una provincia al azar
-//             int indiceAleatorioProvincia = random.Next(provincias.Count);
-//             personaDatos.provincia = provincias[indiceAleatorioProvincia].nombre;
-
-//             // Devuelve el objeto personaDatos
-//             return personaDatos;
-//         }
-//         catch (Exception ex)
-//         {
-//             // Maneja cualquier excepción que ocurra
-//             Console.WriteLine($"Error: {ex.Message}");
-//             return null;
-//         }
-//     }
-// }
-
-
-
-
-

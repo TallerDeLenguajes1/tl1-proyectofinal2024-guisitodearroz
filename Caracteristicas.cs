@@ -7,6 +7,7 @@ public class Caracteristicas
     public int Nivel{get; set;}//1 al 10
     public int Armadura{get; set;}//1 al 10
     public int Salud{get; set;}//100 fijo luego se resta con el daño
+    public Caracteristicas(){}
     public Caracteristicas(int velocidad, int destreza, int fuerza, int nivel, int armadura, int salud)
     {
         this.Velocidad= velocidad;

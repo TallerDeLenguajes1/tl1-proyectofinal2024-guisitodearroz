@@ -1,0 +1,38 @@
+[
+  {
+    "Caracteristica": {
+      "Velocidad": 1,
+      "Destreza": 2,
+      "Fuerza": 3,
+      "Nivel": 4,
+      "Armadura": 5,
+      "Salud": 6
+    },
+    "Dato": {
+      "Tipo": "Humano",
+      "Nombre": "Juan",
+      "Apodo": "Facha",
+      "LugarNacimiento": "Santa Fe",
+      "FechaNacimiento": "1958-10-05T00:00:00",
+      "Edad": 66
+    }
+  },
+  {
+    "Caracteristica": {
+      "Velocidad": 1,
+      "Destreza": 2,
+      "Fuerza": 3,
+      "Nivel": 4,
+      "Armadura": 5,
+      "Salud": 6
+    },
+    "Dato": {
+      "Tipo": "Humano",
+      "Nombre": "Juan",
+      "Apodo": "Facha",
+      "LugarNacimiento": "San Luis",
+      "FechaNacimiento": "1940-02-13T00:00:00",
+      "Edad": 84
+    }
+  }
+]
