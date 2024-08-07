@@ -6,8 +6,8 @@ using System.Collections.Generic;
 namespace personajes;
     public class Persistencia
     {
-       private string rutaPersonajes = "personajes.json";
-        private string rutaDerrotas = "derrotas.json";
+       private string rutaPersonajes = "json/personajes.json";
+        private string rutaDerrotas = "json/derrotas.json";
 
         public void GuardarPersonajes(List<Personaje> personajes)
         {
