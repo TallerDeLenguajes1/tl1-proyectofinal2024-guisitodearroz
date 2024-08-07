@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 public class ApiServicio
 {
     private static readonly HttpClient client = new HttpClient();
-    private static readonly string archivoLocal = "fechas.json"; // Asegúrate de que esta ruta sea correcta
+    private static readonly string archivoLocal = "../json/fechas.json"; // Asegúrate de que esta ruta sea correcta
     private static bool errorMostrado= false;
 
     public static async Task<List<string>> GetFechaApi()
