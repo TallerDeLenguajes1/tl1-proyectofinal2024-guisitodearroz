@@ -27,7 +27,7 @@ namespace personajes
                 string opcion = Console.ReadLine();
                 if (opcion.ToLower() == "s")
                 {
-                    return seleccionarPersonajes(personajes); // Llamada sin await
+                    return seleccionarPersonajes(personajes);
                 }
                 else
                 {
@@ -36,7 +36,7 @@ namespace personajes
             }
             else
             {
-                // Si no hay personajes, se puede crear uno nuevo directamente
+                // Si no hay personajes, se crea uno nuevo directamente
                 return await crearYGuardarPersonaje(personajes);
             }
         }

@@ -9,95 +9,86 @@ public class ApiServicio
 {
     private static readonly HttpClient client = new HttpClient();
     private static readonly string archivoLocal = "fechas.json"; // Asegúrate de que esta ruta sea correcta
+    private static bool errorMostrado= false;
 
     public static async Task<List<string>> GetFechaApi()
     {
         var url = "https://api.generadordni.es/v2/misc/birthdate";
-        int intentos = 5;
-        int segundoEspera = 1000;
-
-        for (int i = 0; i < intentos + 1; i++)
+        try
         {
-            try
+            HttpResponseMessage response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            // Deserializar la respuesta de la API
+            List<string> fechasNac = JsonSerializer.Deserialize<List<string>>(responseBody);
+            if (fechasNac == null || fechasNac.Count == 0)
             {
-                HttpResponseMessage response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                
-                // Deserializar la respuesta de la API
-                List<string> fechasNac = JsonSerializer.Deserialize<List<string>>(responseBody);
-                if (fechasNac == null || fechasNac.Count == 0)
-                {
-                    throw new InvalidOperationException("La respuesta de la API no contiene fechas válidas.");
-                }
-                return fechasNac;
+                throw new InvalidOperationException("La respuesta de la API no contiene fechas válidas.");
             }
-            catch (HttpRequestException ex) when ((int)ex.StatusCode == 429)
-            {
-                Console.WriteLine($"Se intentará nuevamente en {segundoEspera / 1000} segundos debido a: {ex.Message}");
-                await Task.Delay(segundoEspera);
-                segundoEspera = Math.Min(segundoEspera * 2, 30000); // Asegurarse de que no exceda 30 segundos
-            }
-            catch (JsonException ex)
-            {
-                Console.WriteLine($"Error al deserializar la respuesta: {ex.Message}");
-                if (i == intentos - 1)
-                {
-                    return LeerFechasDesdeArchivo();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                if (i == intentos - 1)
-                {
-                    return LeerFechasDesdeArchivo();
-                }
-                throw;
-            }
+            return fechasNac;
         }
-
-        throw new HttpRequestException("Excedidos los intentos máximos.");
-    }
-
-   private static List<string> LeerFechasDesdeArchivo()
-{
-    try
-    {
-        Console.WriteLine($"Leyendo el archivo desde: {archivoLocal}");
-        
-        if (!File.Exists(archivoLocal))
+        catch (HttpRequestException ex)
         {
-            throw new FileNotFoundException($"El archivo '{archivoLocal}' no se encuentra.");
+            mostrarErrorUnaVes($"Error de solicitud HTTP: {ex.Message}. Se intentará leer desde el archivo local.");
+            return LeerFechasDesdeArchivo();
         }
-
-        string json = File.ReadAllText(archivoLocal);
-        Console.WriteLine($"Contenido del archivo: {json}");
-
-        List<string> fechas = JsonSerializer.Deserialize<List<string>>(json);
-
-        if (fechas == null || fechas.Count == 0)
+        catch (JsonException ex)
         {
-            throw new InvalidOperationException("El archivo local no contiene fechas válidas.");
+            mostrarErrorUnaVes($"Error al deserializar la API: {ex.Message}. Se intentará leer desde el archivo local.");
+            return LeerFechasDesdeArchivo();
         }
+        catch (Exception ex)
+        {
+            mostrarErrorUnaVes($"Error general: {ex.Message}. Se intentará leer desde el archivo local.");
+            return LeerFechasDesdeArchivo();
+        }
+    }
 
-        return fechas;
-    }
-    catch (FileNotFoundException ex)
+    private static List<string> LeerFechasDesdeArchivo()
     {
-        Console.WriteLine($"Error al encontrar el archivo: {ex.Message}");
-        throw;
-    }
-    catch (JsonException ex)
-    {
-        Console.WriteLine($"Error al deserializar el archivo: {ex.Message}");
-        throw;
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error al leer el archivo: {ex.Message}");
-        throw;
-    }
-}
+        try
+        {
+            //Console.WriteLine($"Leyendo el archivo desde: {archivoLocal}");
 
+            if (!File.Exists(archivoLocal))
+            {
+                throw new FileNotFoundException($"El archivo '{archivoLocal}' no se encuentra.");
+            }
+
+            string json = File.ReadAllText(archivoLocal);
+            //Console.WriteLine($"Contenido del archivo: {json}"); //aqui controlo el archivo no dar importancia
+
+            List<string> fechas = JsonSerializer.Deserialize<List<string>>(json);
+
+            if (fechas == null || fechas.Count == 0)
+            {
+                throw new InvalidOperationException("El archivo local no contiene fechas válidas.");
+            }
+
+            return fechas;
+        }
+        catch (FileNotFoundException ex)
+        {
+            mostrarErrorUnaVes($"Error al encontrar el archivo: {ex.Message}");
+            throw;
+        }
+        catch (JsonException ex)
+        {
+            mostrarErrorUnaVes($"Error al deserializar el archivo: {ex.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            mostrarErrorUnaVes($"Error al leer el archivo: {ex.Message}");
+            throw;
+        }
+    }
+    public static void mostrarErrorUnaVes(string mesaje){
+        if (!errorMostrado)
+        {
+            Console.WriteLine(mesaje);
+            errorMostrado=true;
+        }
+    }
 }

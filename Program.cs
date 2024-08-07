@@ -6,7 +6,7 @@ try
 {
   while (true)
   {
-    Console.WriteLine("¡Bienvenido a batallas de Fantacia");
+    Console.WriteLine("¡Bienvenido a batallas de Fantasia!");
     Console.WriteLine("1-Seleccionar o crear un Personaje");
     Console.WriteLine("2-Salir");
     Console.WriteLine("Elija una opcion: ");
