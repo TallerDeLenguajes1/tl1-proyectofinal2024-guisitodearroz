@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using personajes;
 try
-{
+{ 
+    Persistencia persistencia= new Persistencia();
     string opcion;
     do
     {
@@ -11,6 +12,7 @@ try
         Console.WriteLine("¡Bienvenido a batallas de Fantasia!");
         Console.WriteLine("1-Seleccionar o crear un Personaje");
         Console.WriteLine("2-Salir");
+        Console.WriteLine("3-Salon de la Fama");
         Console.WriteLine("Elija una opcion: ");
         opcion = Console.ReadLine();
 
@@ -33,6 +35,9 @@ try
                 Console.WriteLine("Combate Finalizado");
                 //Console.WriteLine(personaje.ToString());
             }
+        }else if(opcion=="3")
+        {
+          persistencia.mostrarSalonDeLaFama();
         }
         else if (opcion != "2")
         {

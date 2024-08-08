@@ -27,7 +27,19 @@ public class Batalla
                 string nombEnemigo= enemigo.Dato.Nombre;
                 Console.WriteLine("\n");
                 Console.WriteLine($"Te haz Encontrado con un {nombEnemigo}\n");
-               
+                if (nombEnemigo=="Pomberito")
+                {
+                    Ascii.mostrarPomberito();
+                }else if (nombEnemigo=="Llorona")
+                {
+                    Ascii.mostrarLlorona();
+                }else if (nombEnemigo=="Perro Familiar")
+                {
+                    Ascii.mostrarPerroFamiliar();
+                }else if (nombEnemigo=="Luz mala")
+                {
+                    Ascii.mostrarLuzMala();
+                }
                 while (personaje.Caracteristica.Salud > 0 && enemigo.Caracteristica.Salud > 0)
                 {
                     string nombPersonaje= personaje.Dato.Nombre;

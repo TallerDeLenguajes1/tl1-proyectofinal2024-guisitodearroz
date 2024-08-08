@@ -54,12 +54,13 @@ namespace personajes
                 Console.WriteLine("Opción inválida. Inténtalo de nuevo.");
             }
             Personaje personajeElegido = personajes[numPersonaje - 1];
-            Console.WriteLine("\n");
-            Console.WriteLine("Seleccionó el siguiente personaje: ");
-            Console.WriteLine("\n");
+            
+            Console.WriteLine("\nSeleccionó el siguiente personaje:\n ");
+            
             Console.ForegroundColor= ConsoleColor.Green; 
-            Console.WriteLine(personajeElegido);
-            Console.WriteLine("\n");
+            
+            Console.WriteLine($" Nombre: {personajeElegido.Dato.Nombre} \n Apodo: {personajeElegido.Dato.Apodo} \n Tipo: {personajeElegido.Dato.Tipo} \n Edad: {personajeElegido.Dato.Edad} \n Lugar De Nacimiento {personajeElegido.Dato.LugarNacimiento} \n Salud: {personajeElegido.Caracteristica.Salud}\n Armadura: {personajeElegido.Caracteristica.Armadura}\n Fuerza: {personajeElegido.Caracteristica.Fuerza}\n Velocidad: {personajeElegido.Caracteristica.Velocidad}\n Nivel: {personajeElegido.Caracteristica.Nivel}\n Destreza: {personajeElegido.Caracteristica.Destreza}\n");
+            
             return personajeElegido;
         }
 
@@ -68,9 +69,7 @@ namespace personajes
             Personaje personajeNuevo = await fabricaDePersonajes.crearPersonaje();
             personajes.Add(personajeNuevo);
             persistencia.GuardarPersonajes(personajes);
-            Console.WriteLine("\n");
-            Console.WriteLine("Se creó y guardó exitosamente el personaje");
-            Console.WriteLine("\n");
+            Console.WriteLine("\nSe creó y guardó exitosamente el personaje\n");
             Console.ForegroundColor= ConsoleColor.Green; 
             Console.WriteLine($" Nombre: {personajeNuevo.Dato.Nombre} \n Apodo: {personajeNuevo.Dato.Apodo} \n Tipo: {personajeNuevo.Dato.Tipo} \n Edad: {personajeNuevo.Dato.Edad} \n Lugar De Nacimiento {personajeNuevo.Dato.LugarNacimiento} \n Salud: {personajeNuevo.Caracteristica.Salud}\n Armadura: {personajeNuevo.Caracteristica.Armadura}\n Fuerza: {personajeNuevo.Caracteristica.Fuerza}\n Velocidad: {personajeNuevo.Caracteristica.Velocidad}\n Nivel: {personajeNuevo.Caracteristica.Nivel}\n Destreza: {personajeNuevo.Caracteristica.Destreza}\n");
             

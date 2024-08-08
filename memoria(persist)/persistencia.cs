@@ -92,6 +92,13 @@ namespace personajes;
             ganadores.Add(personaje);
             GuardarGanadores(ganadores);
         }
+        public void mostrarSalonDeLaFama(){
+            List<Personaje> personajeSF=LeerGanadores();
+            foreach (var personaje in personajeSF)
+            {
+               Console.WriteLine($" Nombre: {personaje.Dato.Nombre} \n Apodo: {personaje.Dato.Apodo} \n Tipo: {personaje.Dato.Tipo} \n Edad: {personaje.Dato.Edad} \n Lugar De Nacimiento {personaje.Dato.LugarNacimiento} \n Salud: {personaje.Caracteristica.Salud}\n Armadura: {personaje.Caracteristica.Armadura}\n Fuerza: {personaje.Caracteristica.Fuerza}\n Velocidad: {personaje.Caracteristica.Velocidad}\n Nivel: {personaje.Caracteristica.Nivel}\n Destreza: {personaje.Caracteristica.Destreza}\n");  
+            }
+        }
 }
     
 
