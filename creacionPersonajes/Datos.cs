@@ -11,11 +11,11 @@ public class Datos
     public Datos(){}
     public Datos(string tipo, string nombre, string apodo, DateTime fechaNacimiento, int edad, string lugarNacimiento)
     {
-        this.Tipo = tipo;
-        this.Nombre = nombre;
-        this.Apodo = apodo;
-        this.FechaNacimiento = fechaNacimiento;
-        this.Edad = edad;
+        Tipo = tipo;
+        Nombre = nombre;
+        Apodo = apodo;
+        FechaNacimiento = fechaNacimiento;
+        Edad = edad;
         LugarNacimiento = lugarNacimiento;
     }
     public override string ToString()

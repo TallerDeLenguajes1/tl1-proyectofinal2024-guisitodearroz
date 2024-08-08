@@ -7,6 +7,7 @@ try
     string opcion;
     do
     {
+        Console.ForegroundColor= ConsoleColor.DarkBlue;
         Console.WriteLine("¡Bienvenido a batallas de Fantasia!");
         Console.WriteLine("1-Seleccionar o crear un Personaje");
         Console.WriteLine("2-Salir");
@@ -30,7 +31,7 @@ try
                 Batalla.Combate(personaje, enemigos);
 
                 Console.WriteLine("Combate Finalizado");
-                Console.WriteLine(personaje.ToString());
+                //Console.WriteLine(personaje.ToString());
             }
         }
         else if (opcion != "2")

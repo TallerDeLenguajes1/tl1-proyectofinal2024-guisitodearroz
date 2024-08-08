@@ -5,7 +5,7 @@ public class Batalla
     public static double CalcularDanio(Personaje atacante, Personaje defensor)
         {
             // Ataque del atacante
-            double ataque = atacante.Caracteristica.Destreza * atacante.Caracteristica.Fuerza * atacante.Caracteristica.Nivel;
+            double ataque = atacante.Caracteristica.Destreza * (atacante.Caracteristica.Fuerza + 2) * atacante.Caracteristica.Nivel;//aumento un poquito el daño
             // Efectividad
             double efectividad = fabricaDePersonajes.numAleatorio(1,100);
             // Defensa del defensor
@@ -23,8 +23,10 @@ public class Batalla
             Persistencia persistencia = new Persistencia();
             foreach (var enemigo in enemigos)
             {
+                bool bandera= false;
                 string nombEnemigo= enemigo.Dato.Nombre;
-                Console.WriteLine($"Te haz Encontrado con un {nombEnemigo}");
+                Console.WriteLine("\n");
+                Console.WriteLine($"Te haz Encontrado con un {nombEnemigo}\n");
                
                 while (personaje.Caracteristica.Salud > 0 && enemigo.Caracteristica.Salud > 0)
                 {
@@ -35,32 +37,47 @@ public class Batalla
                     int danioAlEnemigo = (int)Math.Round(danioAlEnemigoDouble);
                     Console.WriteLine($"{nombPersonaje} le hizo {danioAlEnemigo} de daño a {nombEnemigo}");
                     enemigo.Caracteristica.Salud -= (int)danioAlEnemigo;
+                    Console.ReadKey();
 
                     if (enemigo.Caracteristica.Salud <= 0)
                     {
-                        Console.WriteLine("¡Has derrotado al enemigo!");
+                        Console.WriteLine("\n¡Has derrotado al enemigo!\n");
                         // Subir el atributo al azar
                         personaje.SubirAtributoAleatorio();
-                        personaje.Caracteristica.Salud+= fabricaDePersonajes.numAleatorio(5,20);
-                        Console.WriteLine($"!Tus Estadisticas Subieron¡ {nombPersonaje}");
-                        Console.WriteLine($"Salud: {personaje.Caracteristica.Salud}, Armadura: {personaje.Caracteristica.Armadura}, Fuerza: {personaje.Caracteristica.Fuerza} , Velocidad: {personaje.Caracteristica.Velocidad}, Nivel: {personaje.Caracteristica.Nivel}, Destreza: {personaje.Caracteristica.Destreza}");
+                        personaje.Caracteristica.Salud= 100; 
+                        Console.WriteLine("\n!Tus Estadisticas Subieron¡\n");
+                        Console.WriteLine($"\nSalud: {personaje.Caracteristica.Salud}\n Armadura: {personaje.Caracteristica.Armadura}\n Fuerza: {personaje.Caracteristica.Fuerza}\n Velocidad: {personaje.Caracteristica.Velocidad}\n Nivel: {personaje.Caracteristica.Nivel}\n Destreza: {personaje.Caracteristica.Destreza}");
+                        Console.ReadKey();
                         break;
                     }
 
                     // Daño del enemigo al personaje
                     double danioAlPersonajeDouble = CalcularDanio(enemigo, personaje);
                     int danioAlPersonaje = (int)Math.Round(danioAlPersonajeDouble);
-                    Console.WriteLine($"{nombEnemigo} le hizo {danioAlPersonaje} de daño a {nombPersonaje}");
+                    Console.WriteLine($"\n{nombEnemigo} le hizo {danioAlPersonaje} de daño a {nombPersonaje}\n");
                     personaje.Caracteristica.Salud -= (int)danioAlPersonaje;
+                    Console.ReadKey();
 
                     // Verifico si el jugador está derrotado
                     if (personaje.Caracteristica.Salud <= 0)
                     {
-                        Console.WriteLine("¡Te han derrotado!");
+                        Console.WriteLine("\n¡Te han derrotado!\n");   
                         // Guardar la derrota
                         persistencia.MoverADerrotas(personaje);
+                        Console.ReadKey();
+                        bandera= true;
                     }
                 }
+                if (bandera)
+                {
+                    break;
+                }
+            }
+            // Verifico si el personaje ganó todas las batallas
+            if (!enemigos.Any(e => e.Caracteristica.Salud > 0)) //si todos los enemigos tienen menos de 0 
+            {
+                Console.WriteLine("\n¡Has vencido a todos los enemigos y te has convertido en un campeón!\n");
+                persistencia.MoverAGanadores(personaje);
             }
         }
     }

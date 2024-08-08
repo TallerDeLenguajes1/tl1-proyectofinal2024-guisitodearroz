@@ -10,12 +10,12 @@ public class Caracteristicas
     public Caracteristicas(){}
     public Caracteristicas(int velocidad, int destreza, int fuerza, int nivel, int armadura, int salud)
     {
-        this.Velocidad= velocidad;
-        this.Destreza=destreza;
-        this.Fuerza=fuerza;
-        this.Nivel=nivel;
-        this.Armadura=armadura;
-        this.Salud=salud;
+        Velocidad= velocidad;
+        Destreza=destreza;
+        Fuerza=fuerza;
+        Nivel=nivel;
+        Armadura=armadura;
+        Salud=salud;
     }
     public override string ToString()
     {

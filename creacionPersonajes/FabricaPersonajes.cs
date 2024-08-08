@@ -7,7 +7,7 @@ public class fabricaDePersonajes
     // traer datos de la api y ponerlos en un texto plano
     public static async Task<Personaje> crearPersonaje(){
         //deserializacion del json apodo.json
-        string rutaJsonApodo="../json/Apodo.json";
+        string rutaJsonApodo="json/Apodo.json";
         string contJson= File.ReadAllText(rutaJsonApodo);
         ApodoJson apodoJson= JsonSerializer.Deserialize<ApodoJson>(contJson);
         Random random= new Random();
@@ -15,7 +15,7 @@ public class fabricaDePersonajes
         string apodoAleatoreo= apodoJson.Apodos[indiceRandom];
 
         // Deserialización del JSON nombre.json
-        string rutaJsonNombre = "../json/nombresPersonajes.json";
+        string rutaJsonNombre = "json/nombresPersonajes.json";
         string contNombreJson = File.ReadAllText(rutaJsonNombre);
         nombrePersonaje nombreJson = JsonSerializer.Deserialize<nombrePersonaje>(contNombreJson);
         // Selección aleatoria de nombre
@@ -24,7 +24,7 @@ public class fabricaDePersonajes
         
     
         //deserealizo provincia.json
-        string rutaJsonProvincia="../json/provincias.json";
+        string rutaJsonProvincia="json/provincias.json";
         string contJsonProv= File.ReadAllText(rutaJsonProvincia);
         ProvinciasJson provinciasjson=JsonSerializer.Deserialize<ProvinciasJson>(contJsonProv);
         int indiceRandomProv= random.Next(provinciasjson.provincias.Count);
@@ -62,7 +62,7 @@ public class fabricaDePersonajes
         Random random = new Random();
         // Creación de los enemigos 
         // Deserialización del JSON apodo.json
-        string rutaJsonApodo = "../json/nombreEnemigos.json";
+        string rutaJsonApodo = "json/nombreEnemigos.json";
         string contJson = File.ReadAllText(rutaJsonApodo);
         nombrePersonaje apodoJson = JsonSerializer.Deserialize<nombrePersonaje>(contJson);
         // Selección aleatoria de apodo
@@ -70,7 +70,7 @@ public class fabricaDePersonajes
         string apodoAleatoreo = apodoJson.Nombres[indiceApodo];
         
         // Deserialización del JSON tipo.json
-        string rutaJsonTipo = "../json/TiposEnemigos.json";
+        string rutaJsonTipo = "json/TiposEnemigos.json";
         string contTJson = File.ReadAllText(rutaJsonTipo);
         TipoEnemigos tipoJson = JsonSerializer.Deserialize<TipoEnemigos>(contTJson);
         // Selección aleatoria de tipo
@@ -78,7 +78,7 @@ public class fabricaDePersonajes
         string TipoAleatoreo = tipoJson.Tipo[indiceTipo];
         
         // Deserialización del JSON nombre.json
-        string rutaJsonNombre = "../json/nombreEnemigos.json";
+        string rutaJsonNombre = "json/nombreEnemigos.json";
         string contNombreJson = File.ReadAllText(rutaJsonNombre);
         nombrePersonaje nombreJson = JsonSerializer.Deserialize<nombrePersonaje>(contNombreJson);
         // Selección aleatoria de nombre
@@ -86,7 +86,7 @@ public class fabricaDePersonajes
         string NombreAleatoreo = nombreJson.Nombres[indiceNombre];
 
         // Deserialización del JSON provincias.json
-        string rutaJsonProvincia = "../json/provincias.json";
+        string rutaJsonProvincia = "json/provincias.json";
         string contJsonProv = File.ReadAllText(rutaJsonProvincia);
         ProvinciasJson provinciasjson = JsonSerializer.Deserialize<ProvinciasJson>(contJsonProv);
         // Selección aleatoria de provincia

@@ -8,11 +8,12 @@ namespace personajes;
     {
        private string rutaPersonajes = "json/personajes.json";
         private string rutaDerrotas = "json/derrotas.json";
+        private string rutaSalonDeLaFama="json/salonDeLaFama.json";
 
         public void GuardarPersonajes(List<Personaje> personajes)
         {
             string jsonString = JsonSerializer.Serialize(personajes);
-            Console.WriteLine(jsonString); // Control para ver si está funcionando
+            //Console.WriteLine(jsonString); // Control para ver si está funcionando
 
             File.WriteAllText(rutaPersonajes, jsonString); // Guarda en el archivo, si no existe se crea
         }
@@ -66,6 +67,32 @@ namespace personajes;
             // Guardar lista actualizada de derrotas
             GuardarDerrotas(derrotas);
         }
-    }
+         // Método para leer ganadores del salón de la fama
+        public List<Personaje> LeerGanadores()
+        {
+            if (File.Exists(rutaSalonDeLaFama))
+            {
+                string json = File.ReadAllText(rutaSalonDeLaFama);
+                return JsonSerializer.Deserialize<List<Personaje>>(json);
+            }
+            return new List<Personaje>();
+        }
+
+    // Método para guardar ganadores en el salón de la fama
+        public void GuardarGanadores(List<Personaje> ganadores)
+        {
+            string json = JsonSerializer.Serialize(ganadores);
+            File.WriteAllText(rutaSalonDeLaFama, json);
+        }
+
+        // Método para mover un personaje al salón de la fama
+        public void MoverAGanadores(Personaje personaje)
+        {
+            List<Personaje> ganadores = LeerGanadores();
+            ganadores.Add(personaje);
+            GuardarGanadores(ganadores);
+        }
+}
+    
 
 

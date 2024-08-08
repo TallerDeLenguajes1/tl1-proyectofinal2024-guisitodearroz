@@ -23,8 +23,12 @@ namespace personajes
                 {
                     Console.WriteLine($"{i + 1}. {personajes[i]}");
                 }
-                Console.WriteLine("¿Quieres seleccionar un personaje guardado? (S/N)");
-                string opcion = Console.ReadLine();
+                string opcion;
+                do
+                {
+                    Console.WriteLine("¿Quieres seleccionar un personaje guardado? (S/N)");
+                    opcion = Console.ReadLine();
+                } while (opcion != "s" && opcion != "n");
                 if (opcion.ToLower() == "s")
                 {
                     return seleccionarPersonajes(personajes);
@@ -43,15 +47,19 @@ namespace personajes
 
         private Personaje seleccionarPersonajes(List<Personaje> personajes)
         {
-            Console.WriteLine("Elija un personaje por número: ");
+            Console.WriteLine("-------------Elija un personaje por número: -------------");
             int numPersonaje;
             while (!int.TryParse(Console.ReadLine(), out numPersonaje) || numPersonaje < 1 || numPersonaje > personajes.Count)
             {
                 Console.WriteLine("Opción inválida. Inténtalo de nuevo.");
             }
             Personaje personajeElegido = personajes[numPersonaje - 1];
+            Console.WriteLine("\n");
             Console.WriteLine("Seleccionó el siguiente personaje: ");
+            Console.WriteLine("\n");
+            Console.ForegroundColor= ConsoleColor.Green; 
             Console.WriteLine(personajeElegido);
+            Console.WriteLine("\n");
             return personajeElegido;
         }
 
@@ -60,8 +68,13 @@ namespace personajes
             Personaje personajeNuevo = await fabricaDePersonajes.crearPersonaje();
             personajes.Add(personajeNuevo);
             persistencia.GuardarPersonajes(personajes);
+            Console.WriteLine("\n");
             Console.WriteLine("Se creó y guardó exitosamente el personaje");
-            Console.WriteLine(personajeNuevo);
+            Console.WriteLine("\n");
+            Console.ForegroundColor= ConsoleColor.Green; 
+            Console.WriteLine($" Nombre: {personajeNuevo.Dato.Nombre} \n Apodo: {personajeNuevo.Dato.Apodo} \n Tipo: {personajeNuevo.Dato.Tipo} \n Edad: {personajeNuevo.Dato.Edad} \n Lugar De Nacimiento {personajeNuevo.Dato.LugarNacimiento} \n Salud: {personajeNuevo.Caracteristica.Salud}\n Armadura: {personajeNuevo.Caracteristica.Armadura}\n Fuerza: {personajeNuevo.Caracteristica.Fuerza}\n Velocidad: {personajeNuevo.Caracteristica.Velocidad}\n Nivel: {personajeNuevo.Caracteristica.Nivel}\n Destreza: {personajeNuevo.Caracteristica.Destreza}\n");
+            
+            //Console.WriteLine(personajeNuevo);
             return personajeNuevo;
         }
     }

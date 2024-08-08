@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 public class ApiServicio
 {
     private static readonly HttpClient client = new HttpClient();
-    private static readonly string archivoLocal = "../json/fechas.json"; // Asegúrate de que esta ruta sea correcta
+    private static readonly string archivoLocal = "json/fechas.json"; // Asegúrate de que esta ruta sea correcta
     private static bool errorMostrado= false;
 
     public static async Task<List<string>> GetFechaApi()
@@ -28,19 +28,19 @@ public class ApiServicio
             }
             return fechasNac;
         }
-        catch (HttpRequestException ex)
+        catch (HttpRequestException)
         {
-            mostrarErrorUnaVes($"Error de solicitud HTTP: {ex.Message}. Se intentará leer desde el archivo local.");
+            mostrarErrorUnaVez($"Error de solicitud HTTP: Se intentará leer desde el archivo local.");
             return LeerFechasDesdeArchivo();
         }
         catch (JsonException ex)
         {
-            mostrarErrorUnaVes($"Error al deserializar la API: {ex.Message}. Se intentará leer desde el archivo local.");
+            mostrarErrorUnaVez($"Error al deserializar la API: {ex.Message}. Se intentará leer desde el archivo local.");
             return LeerFechasDesdeArchivo();
         }
         catch (Exception ex)
         {
-            mostrarErrorUnaVes($"Error general: {ex.Message}. Se intentará leer desde el archivo local.");
+            mostrarErrorUnaVez($"Error general: {ex.Message}. Se intentará leer desde el archivo local.");
             return LeerFechasDesdeArchivo();
         }
     }
@@ -70,21 +70,21 @@ public class ApiServicio
         }
         catch (FileNotFoundException ex)
         {
-            mostrarErrorUnaVes($"Error al encontrar el archivo: {ex.Message}");
+            mostrarErrorUnaVez($"Error al encontrar el archivo: {ex.Message}");
             throw;
         }
         catch (JsonException ex)
         {
-            mostrarErrorUnaVes($"Error al deserializar el archivo: {ex.Message}");
+            mostrarErrorUnaVez($"Error al deserializar el archivo: {ex.Message}");
             throw;
         }
         catch (Exception ex)
         {
-            mostrarErrorUnaVes($"Error al leer el archivo: {ex.Message}");
+            mostrarErrorUnaVez($"Error al leer el archivo: {ex.Message}");
             throw;
         }
     }
-    public static void mostrarErrorUnaVes(string mesaje){
+    public static void mostrarErrorUnaVez(string mesaje){
         if (!errorMostrado)
         {
             Console.WriteLine(mesaje);
