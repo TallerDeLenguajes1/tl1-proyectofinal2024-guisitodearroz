@@ -6,13 +6,18 @@ try
 { 
     Persistencia persistencia= new Persistencia();
     string opcion;
+    string titulo= "¡Bienvenido a batallas de Fantasia!\n";
+    string combateF="Combate Finalizado";
     do
     {
         Console.ForegroundColor= ConsoleColor.DarkBlue;
-        Console.WriteLine("¡Bienvenido a batallas de Fantasia!");
+        Console.WriteLine("\n");
+        Texto.ImprimirTituloResaltado(titulo);
+        Console.WriteLine("\n");
         Console.WriteLine("1-Seleccionar o crear un Personaje");
-        Console.WriteLine("2-Salir");
-        Console.WriteLine("3-Salon de la Fama");
+        Console.WriteLine("2-Salon de la Fama");
+        Console.WriteLine("3-Panteon de los caidos");
+        Console.WriteLine("4-Salir");
         Console.WriteLine("Elija una opcion: ");
         opcion = Console.ReadLine();
 
@@ -31,20 +36,23 @@ try
                 }
 
                 Batalla.Combate(personaje, enemigos);
-
-                Console.WriteLine("Combate Finalizado");
-                //Console.WriteLine(personaje.ToString());
+                Texto.ImprimirTituloResaltado(combateF);
+                Console.WriteLine("\n");
+                Thread.Sleep(3000);
             }
-        }else if(opcion=="3")
+        }else if(opcion=="2")
         {
           persistencia.mostrarSalonDeLaFama();
         }
-        else if (opcion != "2")
+        else if (opcion == "3")
         {
-            Console.WriteLine("Opción incorrecta");
+            persistencia.mostrarPanteonDeLosCaidos();
+        }else if(opcion == "4")
+        {
+            Texto.ImprimirTextoCentrado("Nos vemos pronto\n");
         }
 
-    } while (opcion != "2");
+    } while (opcion != "4");
 }
 catch (Exception ex)
 {

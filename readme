@@ -6,5 +6,6 @@ Un juego donde prodras pelear contra distintos tipos de enemigos sacados directa
 La idea original era Hacer un juego interactivo pero el tiempo me jugo en contra por ese motivo es un juego de pelea automatica.
 ## Informacion para Desarrolladores
 Se uso un sistema basico con librerias ya instaladas en el jdk como por ejemplo System.Text.Json para el trabajo interno de informacion con archivos json.
+Por otro lado uso la api [https://api.generadordni.es/v2] para generar fechas aleatorias y asi calcular la edad, en caso de que la api presente fallas tengo un archivo de respaldo con fechas para que el juego siempre este activo.
 ## Mensaje del desarrollador
 Desde ya muchas gracias y queria aclarar que es un proyecto que actualizare y seguire avanzando hasta hacer un juego hecho y derecho.
