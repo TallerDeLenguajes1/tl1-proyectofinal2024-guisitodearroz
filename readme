@@ -1,11 +1,16 @@
 # ¡Bienvenido a batallas de Fantasia!
-Este es mi proyecto donde recorreremos el norte Argentino junto a sus leyendas, folclore y por supuesto nuestros heroes 100% criollos.
+Este es mi proyecto para la facultad, donde exploraremos el norte argentino, sus leyendas, folclore, y, por supuesto, nuestros héroes 100% criollos. ¡Prepárate para adentrarte en un mundo de mitos y aventuras!
+
 ## Descripcion
-Un juego donde prodras pelear contra distintos tipos de enemigos sacados directamente del folclore Argentino y Latinoamericano.
+"Batallas de Fantasía" es un juego que te permite enfrentarte a una variedad de enemigos inspirados en el folclore argentino y latinoamericano. Cada batalla está cargada de historia y tradición, combinando elementos culturales con mecánicas de combate por turnos. A través de estas batallas, el jugador podrá conocer más sobre las leyendas que forman parte de nuestra identidad.
+
 ## Jugabilidad
-La idea original era Hacer un juego interactivo pero el tiempo me jugo en contra por ese motivo es un juego de pelea automatica.
+Aunque la idea original era crear un juego interactivo, el tiempo disponible llevó a que optara por un sistema de combate automático. Esto significa que los jugadores no necesitan intervenir directamente durante las batallas; en cambio, el sistema calculará los resultados de los combates basado en las estadísticas y atributos de los personajes.
+El juego consta de varias rondas de combate, donde un personaje principal se enfrenta a enemigos generados aleatoriamente. Si el personaje principal gana, sufre mejoras en atributos al azar, lo que le permite enfrentarse a enemigos más fuertes en rondas posteriores.
+
 ## Informacion para Desarrolladores
-Se uso un sistema basico con librerias ya instaladas en el jdk como por ejemplo System.Text.Json para el trabajo interno de informacion con archivos json.
-Por otro lado uso la api [https://api.generadordni.es/v2] para generar fechas aleatorias y asi calcular la edad, en caso de que la api presente fallas tengo un archivo de respaldo con fechas para que el juego siempre este activo.
+El proyecto fue desarrollado utilizando C# y se apoya en las librerías estándar del .NET Framework. Para la manipulación y almacenamiento de datos en formato JSON, se utilizó System.Text.Json, lo que permite una gestión eficiente de la información relacionada con los personajes y enemigos.
+Adicionalmente, el juego utiliza la API de https://api.generadordni.es/v2, específicamente la sección misc, para generar fechas de nacimiento aleatorias. Esto es crucial para calcular la edad de los personajes y mantener la diversidad en las características de los enemigos. En caso de que la API presente fallas o no esté disponible, el juego cuenta con un archivo de respaldo que almacena fechas predefinidas, asegurando que el juego siempre se mantenga operativo.
+
 ## Mensaje del desarrollador
-Desde ya muchas gracias y queria aclarar que es un proyecto que actualizare y seguire avanzando hasta hacer un juego hecho y derecho.
+Quiero agradecer a todos los que han mostrado interés en este proyecto. Aunque es un prototipo, mi intención es seguir trabajando en él para convertirlo en un juego completamente interactivo y pulido. Agradezco cualquier feedback y estoy comprometido en actualizar y mejorar el juego en futuras versiones.
